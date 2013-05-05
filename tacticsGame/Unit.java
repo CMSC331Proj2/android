@@ -1,23 +1,32 @@
 package tacticsGame;
 
+import java.awt.*;
+
+@SuppressWarnings("unused")
 public abstract class Unit {
-	String name;			// Unit's name
-	int lvl;				// Unit's level
-	int xPos, yPos, move;	// Coordinates on the board and distance unit can move
-	int atk, mag, range;	// Attack and Magic stats and basic attack range
-	int hp, mp;				// Hit points and Magic points
-	double evade, acc;		// Evasion and Accuracy stats
+	private String name;			// Unit's name
+	private int lvl;				// Unit's level
+	private int xPos, yPos, move;	// Coordinates on the board and distance unit can move
+	private int atk, mag, range;	// Attack and Magic stats and basic attack range
+	private int hp, mp;				// Hit points and Magic points
+	private double evade, acc;		// Evasion and Accuracy stats
+	private Image sprite;
+	private boolean visible;
 	
-	public Unit(String name, int move, int atk, int hp){
+	public Unit(String name, int move, int atk, int hp, int x, int y){
 		this.name = name;
 		this.move = move;
 		this.atk = atk;
 		this.hp = hp;
+		xPos = x;
+		yPos = y;
 		
-		this.lvl = 1;
-		this.mag = 0;
-		this.range = 1;
-		this.mp = 0;
+		lvl = 1;
+		mag = 0;
+		range = 1;
+		mp = 0;
+		visible = true;
+		sprite = Sprites.PLACEHOLDER.getSprite();
 	}
 	
 	public void attack(Unit other){
@@ -30,5 +39,34 @@ public abstract class Unit {
 	
 	public void takeDamage(int dmg){
 		hp -= dmg;
+	}
+	
+	public boolean isVisible(){
+		return visible;
+	}
+	
+	public int getX(){
+    	return xPos;
+    }
+	
+	public int getY(){
+    	return yPos;
+    }
+	
+	public void setCoords(int x, int y){
+		xPos = x;
+		yPos = y;
+	}
+	
+	public Image getImage(){
+		return sprite;
+	}
+	
+	public int getMoveRange(){
+		return move;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }
