@@ -3,8 +3,7 @@ package com.example.tactical;
 public interface Cell
 {
 
-	// returns 0 = null, 1 = red, 2 = blue
-	public int getColor();
+	public String getColor();
 	
 	public boolean isSelected();
 	
@@ -13,5 +12,7 @@ public interface Cell
 	public int getImage();
 	
 	public int getAttack();
+	
+	public int getRange();
 	
 }
