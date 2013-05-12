@@ -1,17 +1,17 @@
 package com.example.tactical;
 
 
-public class Mage implements Cell 
+public class Archer implements Cell 
 {
 	private boolean selected = false;
 	private String color;
-	private final int hitPoint = 30;
-	private final int attack = 7;
-	private final int range = 5;
+	private final int hitPoint = 20;
+	private final int attack = 3;
+	private final int range = 4;
 	
 	private int image;
 	
-	public Mage(String color)
+	public Archer(String color)
 	{
 		this.color = color;
 		setImage();
@@ -20,9 +20,9 @@ public class Mage implements Cell
 	private void setImage()
 	{
 		if(color.equals("Blue"))
-			image = R.drawable.mage_blue;
+			image = R.drawable.archer_blue;
 		if(color.equals("Red"))
-			image = R.drawable.mage_red;
+			image = R.drawable.archer_red;
 	}
 
 	public String getColor()

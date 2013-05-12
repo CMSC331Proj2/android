@@ -8,9 +8,9 @@ public class EmptyCell implements Cell
 	
 	private int image = R.drawable.grass;
 	
-	public int getColor()
+	public String getColor()
 	{
-		return 0;
+		return "Empty";
 	}
 
 	public boolean isSelected()
@@ -37,6 +37,11 @@ public class EmptyCell implements Cell
 	public int getImage()
 	{
 		return image;
+	}
+
+	public int getRange()
+	{
+		return 0;
 	}
 	
 }
