@@ -30,8 +30,11 @@ public class BattleGrid extends GridLayout {
 			}
 		}
 		
-		setPadding(1, 1, 1, 1);
+		setMinimumHeight(400);
+		setMinimumWidth(400);
 		setBackgroundColor(Color.BLACK);
+		setClipChildren(true);
+		setFitsSystemWindows(true);
 	}
 	
 	public Space space(int x, int y){

@@ -6,9 +6,9 @@ public class Warrior extends Unit {
 		super(name, 4, 7, 30, x, y);
 		this.team = team;
 		if(this.team.equals("Blue")){
-			sprite = R.drawable.knight_blue;
+			sprite = R.drawable.blue_knight;
 		} else if(this.team.equals("Red")){
-			sprite = R.drawable.knight_red;
+			sprite = R.drawable.red_knight;
 		}
 	}
 

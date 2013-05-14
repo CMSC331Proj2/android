@@ -11,10 +11,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		BattleGrid grid = new BattleGrid(getBaseContext(), 5, 5);
+		BattleGrid grid = new BattleGrid(getBaseContext(), 10, 10);
 		setContentView(grid);
 		
-		grid.addUnit(new Warrior("Conan", "Red", 1, 1));
+		grid.addUnit(new Warrior("Conan", "Red", 1, 3));
 	}
 
 	@Override

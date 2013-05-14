@@ -8,7 +8,7 @@ import android.widget.*;
 @SuppressLint("ViewConstructor")
 public class Space extends ImageButton {
 	private Unit unit;
-	private int sprite = R.drawable.grass;
+	private int sprite;
 	public boolean inRange;
 	private int xCoord, yCoord;
 	
@@ -20,10 +20,11 @@ public class Space extends ImageButton {
 		yCoord = y;
 		setBackgroundColor(Color.WHITE);
 		setClickable(true);
-		setImageResource(sprite);
+		setBackgroundResource(R.drawable.grass);
 		setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-		setMaxHeight(6);
-		setMaxWidth(6);
+		setMinimumHeight(75);
+		setMinimumWidth(75);
+		setCropToPadding(true);
 	}
 	
 	public Space(Context cont, Unit newUnit, int x, int y){
@@ -57,7 +58,7 @@ public class Space extends ImageButton {
 	
 	public void clear(){
 		unit = null;
-		sprite = R.drawable.grass;
-		setImageResource(sprite);
+		sprite = 0;
+		setImageDrawable(null);
 	}
 }
