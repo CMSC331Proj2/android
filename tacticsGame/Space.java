@@ -1,38 +1,41 @@
-package tacticsGame;
+package androidGame.tacticalrpg;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import android.annotation.*;
+import android.content.*;
+import android.graphics.*;
+import android.widget.*;
 
-@SuppressWarnings("serial")
-public class Space extends JButton {
+@SuppressLint("ViewConstructor")
+public class Space extends ImageButton {
 	private Unit unit;
-	private ImageIcon sprite = new ImageIcon();
+	private int sprite = R.drawable.grass;
 	public boolean inRange;
-	private int x, y;
+	private int xCoord, yCoord;
 	
-	public Space(ActionListener al, int x, int y){
+	public Space(Context cont, int x, int y){
+		super(cont);
 		unit = null;
 		inRange = false;
-		this.x = x;
-		this.y = y;
-		this.setPreferredSize(new Dimension(70, 70));
-		this.setBackground(Color.WHITE);
-		this.addActionListener(al);
+		xCoord = x;
+		yCoord = y;
+		setBackgroundColor(Color.WHITE);
+		setClickable(true);
+		setImageResource(sprite);
+		setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+		setMaxHeight(6);
+		setMaxWidth(6);
 	}
 	
-	public Space(Unit newUnit, ActionListener al, int x, int y){
-		this(al, x, y);
-		unit = newUnit;
-		sprite.setImage(unit.getImage());
-		this.setIcon(sprite);
+	public Space(Context cont, Unit newUnit, int x, int y){
+		this(cont, x, y);
+		addUnit(newUnit);
 	}
 	
 	public void addUnit(Unit newUnit){
 		if(unit == null){
 			unit = newUnit;
-			sprite.setImage(unit.getImage());
-			this.setIcon(sprite);
+			sprite = unit.getImage();
+			setImageResource(sprite);
 		}
 	}
 	
@@ -40,12 +43,12 @@ public class Space extends JButton {
 		return unit;
 	}
 	
-	public int getX(){
-		return x;
+	public int getXCoord(){
+		return xCoord;
 	}
 	
-	public int getY(){
-		return y;
+	public int getYCoord(){
+		return yCoord;
 	}
 	
 	public boolean isEmpty(){
@@ -54,6 +57,7 @@ public class Space extends JButton {
 	
 	public void clear(){
 		unit = null;
-		setIcon(null);
+		sprite = R.drawable.grass;
+		setImageResource(sprite);
 	}
 }

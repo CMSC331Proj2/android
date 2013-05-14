@@ -1,33 +1,42 @@
-package tacticsGame;
+package androidGame.tacticalrpg;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
-import javax.swing.*;
 
-@SuppressWarnings("serial")
-public class BattleGrid extends JPanel {
-	LinkedList<LinkedList<Space>> spaces;
-	int height, width;
+import android.annotation.*;
+import android.content.*;
+import android.graphics.*;
+import android.view.*;
+import android.widget.*;
+
+@SuppressLint("ViewConstructor")
+public class BattleGrid extends GridLayout {
+	ArrayList<ArrayList<View>> spaces;
 	
-	public BattleGrid(int x, int y, ActionListener al){
-		height = y;
-		width = x;
-		setLayout(new GridLayout(y, x));
-		setMaximumSize(new Dimension(700, 700));
-		spaces = new LinkedList<LinkedList<Space>>();
+	public BattleGrid(Context cont, int x, int y){
+		super(cont);
+		setColumnCount(x);
+		setRowCount(y);
+		spaces = new ArrayList<ArrayList<View>>();
 		for(int i = 0; i < y; i++){
-			spaces.add(new LinkedList<Space>());
+			spaces.add(new ArrayList<View>());
 			for(int j = 0; j < x; j++){
-				spaces.get(i).add(new Space(al, j, i));
-				add(space(j, i));
+				spaces.get(i).add(new Space(cont, j, i));
 			}
 		}
+		
+		for(int i = 0; i < y; i++){
+			for(int j = 0; j < x; j++){
+				addView(space(j, i));
+			}
+		}
+		
+		setPadding(1, 1, 1, 1);
+		setBackgroundColor(Color.BLACK);
 	}
 	
 	public Space space(int x, int y){
-		if(x < width && y < height && x >= 0 && y >= 0){
-			return spaces.get(y).get(x);
+		if(x < getRowCount() && y < getColumnCount() && x >= 0 && y >= 0){
+			return (Space) spaces.get(y).get(x);
 		} else {
 			return null;
 		}
@@ -52,8 +61,8 @@ public class BattleGrid extends JPanel {
 	}
 	
 	public void showRange(int x, int y, int range){
-		if(x < width && y < height && x >= 0 && y >= 0 && range >= 0){
-			space(x, y).setBackground(Color.GREEN);
+		if(x < getRowCount() && y < getColumnCount() && x >= 0 && y >= 0 && range >= 0){
+			space(x, y).setBackgroundColor(Color.GREEN);
 			space(x, y).inRange = true;
 			showRange(x + 1, y, range - 1);
 			showRange(x, y + 1, range - 1);
@@ -70,9 +79,9 @@ public class BattleGrid extends JPanel {
 	}
 	
 	public void resetRangeIndicator(){
-		for(int i = 0; i < width; i++){
-			for(int j = 0; j < height; j++){
-				space(i, j).setBackground(Color.WHITE);
+		for(int i = 0; i < getRowCount(); i++){
+			for(int j = 0; j < getColumnCount(); j++){
+				space(i, j).setBackgroundColor(Color.WHITE);
 				space(i, j).inRange = false;
 			}
 		}
