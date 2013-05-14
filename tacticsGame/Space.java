@@ -3,6 +3,7 @@ package androidGame.tacticalrpg;
 import android.annotation.*;
 import android.content.*;
 import android.graphics.*;
+import android.view.*;
 import android.widget.*;
 
 @SuppressLint("ViewConstructor")
@@ -25,6 +26,15 @@ public class Space extends ImageButton {
 		setMinimumHeight(75);
 		setMinimumWidth(75);
 		setCropToPadding(true);
+		
+		setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				TextView text = new TextView(getContext());
+				text.setText("Words");
+				PopupWindow options = new PopupWindow(text);
+				options.showAsDropDown(v);
+			}
+		});
 	}
 	
 	public Space(Context cont, Unit newUnit, int x, int y){

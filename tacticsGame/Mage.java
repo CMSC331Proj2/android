@@ -1,42 +1,14 @@
 package androidGame.tacticalrpg;
 
-public class Mage implements Cell 
-{
-	private boolean selected = false;
-	private final int hitPoint = 0;
-	private final int attack = 0;
+public class Mage extends Unit {
 	
-	private int image = R.drawable.grass;
-	
-	public int getColor()
-	{
-		return 0;
+	public Mage(String name, String team, int x, int y) {
+		super(name, 4, 4, 15, x, y);
+		this.team = team;
+		if(this.team.equals("Blue")){
+			sprite = R.drawable.blue_mage;
+		} else if(this.team.equals("Red")){
+			sprite = R.drawable.red_mage;
+		}
 	}
-
-	public boolean isSelected()
-	{
-		return selected;
-	}
-
-
-	public void setSelected(Boolean selected)
-	{
-		this.selected = selected;
-	}
-
-	public int getHitPoint()
-	{
-		return hitPoint;
-	}
-
-	public int getAttack()
-	{
-		return attack;
-	}
-	
-	public int getImage()
-	{
-		return image;
-	}
-	
 }
